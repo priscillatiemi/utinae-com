@@ -22,7 +22,8 @@ from core import urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", include(urls))
+    path("", include("core.urls")),
+    path("user/", include("userauths.urls")),
 ]
 
 
