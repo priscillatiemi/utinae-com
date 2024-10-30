@@ -123,10 +123,10 @@
                     <div class="col-xl-3 col-lg-4">
                         <div class="header-info">
                             <ul>
-                                <li><a href="page-about.htlm">About Us</a></li>
-                                <li><a href="page-account.html">My Account</a></li>
-                                <li><a href="shop-wishlist.html">Wishlist</a></li>
-                                <li><a href="shop-order.html">Order Tracking</a></li>
+                                <li><a href="page-about.htlm">Sobre nós</a></li>
+                                <li><a href="page-account.html">Minha conta</a></li>
+                                <li><a href="shop-wishlist.html">Favoritos</a></li>
+                                <li><a href="shop-order.html">Rastrear pedido</a></li>
                             </ul>
                         </div>
                     </div>
@@ -134,9 +134,9 @@
                         <div class="text-center">
                             <div id="news-flash" class="d-inline-block">
                                 <ul>
-                                    <li>100% Secure delivery without contacting the courier</li>
-                                    <li>Supper Value Deals - Save more with coupons</li>
-                                    <li>Trendy 25silver jewelry, save up 35% off today</li>
+                                    <li>Entrega 100% segura</li>
+                                    <li>Experimente mais sobre Okinawa!</li>
+                                    <li>Cervejas originais</li>
                                 </ul>
                             </div>
                         </div>
@@ -144,9 +144,9 @@
                     <div class="col-xl-3 col-lg-4">
                         <div class="header-info header-info-right">
                             <ul>
-                                <li>Need help? Call Us: <strong class="text-brand"> + 1800 900</strong></li>
+                                <li>Precisa de ajuda? Ligue pra nós: <strong class="text-brand"> 11 0000-0000</strong></li>
                                 <li>
-                                    <a class="language-dropdown-active" href="#">English <i class="fi-rs-angle-small-down"></i></a>
+                                    <a class="language-dropdown-active" href="#">Português <i class="fi-rs-angle-small-down"></i></a>
                                     <ul class="language-dropdown">
                                         <li>
                                             <a href="#"><img src="{% static 'assets/imgs/theme/flag-fr.png' %}" alt="" />Français</a>
@@ -160,7 +160,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a class="language-dropdown-active" href="#">USD <i class="fi-rs-angle-small-down"></i></a>
+                                    <a class="language-dropdown-active" href="#">R$ <i class="fi-rs-angle-small-down"></i></a>
                                     <ul class="language-dropdown">
                                         <li>
                                             <a href="#"><img src="{% static 'assets/imgs/theme/flag-fr.png' %}" alt="" />INR</a>
@@ -225,21 +225,21 @@
                                         <img class="svgInject" alt="Nest" src="{% static 'assets/imgs/theme/icons/icon-compare.svg' %}" />
                                         <span class="pro-count blue">3</span>
                                     </a>
-                                    <a href="shop-compare.html"><span class="lable ml-0">Compare</span></a>
+                                    <a href="shop-compare.html"><span class="lable ml-0">Comparar</span></a>
                                 </div>
                                 <div class="header-action-icon-2">
                                     <a href="shop-wishlist.html">
                                         <img class="svgInject" alt="Nest" src="{% static 'assets/imgs/theme/icons/icon-heart.svg' %}" />
                                         <span class="pro-count blue">6</span>
                                     </a>
-                                    <a href="shop-wishlist.html"><span class="lable">Wishlist</span></a>
+                                    <a href="shop-wishlist.html"><span class="lable">Favoritos</span></a>
                                 </div>
                                 <div class="header-action-icon-2">
                                     <a class="mini-cart-icon" href="shop-cart.html">
                                         <img alt="Nest" src="{% static 'assets/imgs/theme/icons/icon-cart.svg' %}" />
                                         <span class="pro-count blue">2</span>
                                     </a>
-                                    <a href="shop-cart.html"><span class="lable">Cart</span></a>
+                                    <a href="shop-cart.html"><span class="lable">Carrinho</span></a>
                                     <div class="cart-dropdown-wrap cart-dropdown-hm2">
                                         <ul>
                                             <li>
@@ -282,15 +282,19 @@
                                     <a href="page-account.html">
                                         <img class="svgInject" alt="Nest" src="{% static 'assets/imgs/theme/icons/icon-user.svg' %}" />
                                     </a>
-                                    <a href="page-account.html"><span class="lable ml-0">Account</span></a>
+                                    <a href="page-account.html"><span class="lable ml-0">Minha conta</span></a>
                                     <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
                                         <ul>
-                                            <li><a href="page-account.html"><i class="fi fi-rs-user mr-10"></i>My Account</a></li>
-                                            <li><a href="page-account.html"><i class="fi fi-rs-location-alt mr-10"></i>Order Tracking</a></li>
-                                            <li><a href="page-account.html"><i class="fi fi-rs-label mr-10"></i>My Voucher</a></li>
-                                            <li><a href="shop-wishlist.html"><i class="fi fi-rs-heart mr-10"></i>My Wishlist</a></li>
-                                            <li><a href="page-account.html"><i class="fi fi-rs-settings-sliders mr-10"></i>Setting</a></li>
-                                            <li><a href="page-login.html"><i class="fi fi-rs-sign-out mr-10"></i>Sign out</a></li>
+                                            <!-- <li><a href="page-account.html"><i class="fi fi-rs-user mr-10"></i>My Account</a></li> -->
+                                            <li><a href="page-account.html"><i class="fi fi-rs-location-alt mr-10"></i>Rastrear Pedido</a></li>
+                                            <!-- <li><a href="page-account.html"><i class="fi fi-rs-label mr-10"></i>My Voucher</a></li> -->
+                                            <li><a href="shop-wishlist.html"><i class="fi fi-rs-heart mr-10"></i>Favoritos</a></li>
+                                            <li><a href="page-account.html"><i class="fi fi-rs-settings-sliders mr-10"></i>Configurações</a></li>
+                                            {% if request.user.is_authenticated %}
+                                            <li><a href="{% url 'userauths:sign-out' %}"><i class="fi fi-rs-sign-out mr-10"></i>Sign out</a></li>
+                                            {% else %}
+                                            <li><a href="{% url 'userauths:sign-out' %}"><i class="fi fi-rs-sign-in mr-10"></i>Sign In</a></li>
+                                            {% endif %}
                                         </ul>
                                     </div>
                                 </div>

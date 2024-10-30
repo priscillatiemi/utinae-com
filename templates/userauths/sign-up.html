@@ -21,12 +21,12 @@
                                     <div class="padding_eight_all bg-white">
                                         {% if form.errors %}
                                         <div class="alert alert-danger">
-                                            <strong>`{{form.errors}}</strong>
+                                            <strong>{{form.errors}}</strong>
                                         </div>
                                         {% endif %}
                                         <div class="heading_s1">
-                                            <h1 class="mb-5">Create an Account</h1>
-                                            <p class="mb-30">Already have an account? <a href="page-login.html">Login</a></p>
+                                            <h1 class="mb-5">Criar uma conta</h1>
+                                            <p class="mb-30">Já tem uma conta? <a href="{% url 'userauths:sign-in' %}">Login</a></p>
                                         </div>
                                         <form method="post" method="POST">
                                             {% csrf_token %}
