@@ -3,8 +3,9 @@ from userauths.forms import UserRegisterForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.conf import settings
+from userauths.models import User
 
-User = settings.AUTH_USER_MODEL
+# User = settings.AUTH_USER_MODEL
 
 def register_view(request):
 
@@ -40,22 +41,18 @@ def login_view(request):
 
         try:
             user = User.objects.get(email=email)
+            user = authenticate(request, email=email, password=password)
+            if user is not None:
+                login(request, user)
+                messages.success(request, "Login feito com sucesso!")
+                return redirect("core:index")
+            else:
+                messages.warning(request, "Usuário não existe. Crie uma conta")
         except:
             messages.warning(request, f"O email {email} não existe")
-
-        user = authenticate(request, email=email, password=password)
-
-        if user is not None:
-            login(request, user)
-            messages.success(request, "Login feito com sucesso!")
-            return redirect("core:index")
-        else:
-            messages.warning(request, "Usuário não existe. Crie uma conta")
     
-    context = {
 
-    }
-    return render(request, "userauths/sign-in.html", context)
+    return render(request, "userauths/sign-in.html")
 
 def logout_view(request):
     logout(request)
