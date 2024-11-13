@@ -30,7 +30,7 @@ def user_directory_path(instance, filename):
     return 'user_{0}/{1}'.format(instance.user.id, filename)
 
 class Category(models.Model):
-    cid = ShortUUIDField(unique=True, max_length=20, prefix="cat", alphabet="abcdefgh12345")
+    cid = ShortUUIDField(unique=True, max_length=20)
     title = models.CharField(max_length=100, default="Cerveja")
     image = models.ImageField(upload_to="category.jpg")
 
@@ -38,7 +38,7 @@ class Category(models.Model):
         verbose_name_plural = "Categories"
 
     def category_image(self):
-        return mark_safe('<img src="%s" width="50" heigth="50" />' (self.image.url))
+        return mark_safe('<img src="%s" width="50" heigth="50" />' % (self.image.url))
 
     def __str__(self):
         return self.title
@@ -47,7 +47,7 @@ class Tags(models.Model):
     pass
 
 class Vendor(models.Model):
-    vid = ShortUUIDField(unique=True, max_length=20, prefix="ven", alphabet="abcdefgh12345")
+    vid = ShortUUIDField(unique=True, max_length=20)
     title = models.CharField(max_length=100, default="Utina Beer")
     image = models.ImageField(upload_to=user_directory_path, default="product.jpg")
     description = models.TextField(null=True, blank=True, default="Produto")
@@ -65,13 +65,13 @@ class Vendor(models.Model):
         verbose_name_plural = "Vendors"
 
     def vendor_image(self):
-        return mark_safe('<img src="%s" width="50" heigth="50" />' (self.image.url))
+        return mark_safe('<img src="%s" width="50" heigth="50" />' % (self.image.url))
 
     def __str__(self):
         return self.title
 
 class Product(models.Model):
-    pid = ShortUUIDField(unique=True, max_length=20, prefix="prd", alphabet="abcdefgh12345")
+    pid = ShortUUIDField(unique=True, max_length=20)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
 
@@ -83,16 +83,17 @@ class Product(models.Model):
     old_price = models.DecimalField(max_digits=99999, decimal_places=2, default="2.99")
 
     specifications = models.TextField(null=True, blank=True, default="Cerveja de Okinawa")
-    tags = models.ForeignKey(Tags, on_delete=models.SET_NULL, null=True)
+    # tags = models.ForeignKey(Tags, on_delete=models.SET_NULL, null=True)
 
     product_status = models.CharField(choices=STATUS, max_length=10, default="in_review")
+    vendor = models.ForeignKey(Vendor, on_delete=models.SET_NULL, null=True)
 
     status = models.BooleanField(default=True)
     in_stock = models.BooleanField(default=True)
     featured = models.BooleanField(default=False)
     digital = models.BooleanField(default=False)
  
-    sku = ShortUUIDField(unique=True, max_length=20, prefix="sku", alphabet="1234567890")
+    sku = ShortUUIDField(unique=True, max_length=20)
     date = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(null=True, blank=True)
     
@@ -101,7 +102,7 @@ class Product(models.Model):
         verbose_name_plural = "Products"
 
     def product_image(self):
-        return mark_safe('<img src="%s" width="50" heigth="50" />' (self.image.url))
+        return mark_safe('<img src="%s" width="50" heigth="50" />' % (self.image.url))
 
     def __str__(self):
         return self.title
@@ -133,6 +134,7 @@ class CartOrder(models.Model):
 
 class CartOrderItems(models.Model):
     order = models.ForeignKey(CartOrder, on_delete=models.CASCADE)
+    invoice_no = models.CharField(max_length=200)
     product_status = models.CharField(max_length=200)
     item = models.CharField(max_length=200)
     image = models.CharField(max_length=200)

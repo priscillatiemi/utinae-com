@@ -134,7 +134,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 JAZZMIN_SETTINGS = {
     'site_header': "Utina beer",
     'site_brand': "Utina beer",
-    'site_logo': "assets/imgs/theme/logo-fundo-branco.jpg",
+    'site_logo': "assets/imgs/theme/login-utina.jpg",
     'copyright': "utinabeer.com"
 }
 
