@@ -49,8 +49,10 @@ def product_detail_view(request, pid):
     product = Product.objects.get(pid=pid)
     # product = get_object_or_404(Product, pid=pid)
     
+    p_image = product.p_images.all()
     context = {
-        "product": product,
+        "p": product,
+        "p_image": p_image,
     }
     return render(request, "core/product-detail.html", context)
 
